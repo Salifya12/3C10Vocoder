@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>report</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #232629;
+        color: #7a7c7d;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+    div.sourceCode
+      { color: #cfcfc2; background-color: #232629; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #cfcfc2; } /* Normal */
+    code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+    code span.an { color: #3f8058; } /* Annotation */
+    code span.at { color: #2980b9; } /* Attribute */
+    code span.bn { color: #f67400; } /* BaseN */
+    code span.bu { color: #7f8c8d; } /* BuiltIn */
+    code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #3daee9; } /* Char */
+    code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+    code span.co { color: #7a7c7d; } /* Comment */
+    code span.cv { color: #7f8c8d; } /* CommentVar */
+    code span.do { color: #a43340; } /* Documentation */
+    code span.dt { color: #2980b9; } /* DataType */
+    code span.dv { color: #f67400; } /* DecVal */
+    code span.er { color: #da4453; text-decoration: underline; } /* Error */
+    code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+    code span.fl { color: #f67400; } /* Float */
+    code span.fu { color: #8e44ad; } /* Function */
+    code span.im { color: #27ae60; } /* Import */
+    code span.in { color: #c45b00; } /* Information */
+    code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+    code span.op { color: #cfcfc2; } /* Operator */
+    code span.ot { color: #27ae60; } /* Other */
+    code span.pp { color: #27ae60; } /* Preprocessor */
+    code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+    code span.sc { color: #3daee9; } /* SpecialChar */
+    code span.ss { color: #da4453; } /* SpecialString */
+    code span.st { color: #f44f4f; } /* String */
+    code span.va { color: #27aeae; } /* Variable */
+    code span.vs { color: #da4453; } /* VerbatimString */
+    code span.wa { color: #da4453; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="report.css" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
+</head>
+<body>
+<center>
+	<h1 style="font-size: 4em;">Vocoder</h1>
+</center>
+
+<center>3C10 Group 2 <br> 
+Muirinn Daly, Niall Maguire, Salifya Mtambo, Connor Doyle</center>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#description" id="toc-description">Description</a></li>
+<li><a href="#components" id="toc-components">Components</a>
+<ul>
+<li><a href="#block-diagram" id="toc-block-diagram">Block
+Diagram</a></li>
+<li><a href="#wiring-diagram" id="toc-wiring-diagram">Wiring
+Diagram</a></li>
+</ul></li>
+<li><a href="#build-and-test" id="toc-build-and-test">Build and Test</a>
+<ul>
+<li><a href="#microphone-input" id="toc-microphone-input">Microphone
+Input</a></li>
+<li><a href="#dac" id="toc-dac">DAC</a></li>
+<li><a href="#speaker" id="toc-speaker">Speaker</a></li>
+<li><a href="#display" id="toc-display">Display</a></li>
+</ul></li>
+<li><a href="#digital-signal-processing"
+id="toc-digital-signal-processing">Digital Signal Processing</a>
+<ul>
+<li><a href="#synthesiser" id="toc-synthesiser">Synthesiser</a>
+<ul>
+<li><a href="#implementation"
+id="toc-implementation">Implementation</a></li>
+<li><a href="#testing" id="toc-testing">Testing</a></li>
+</ul></li>
+<li><a href="#band-pass-filters" id="toc-band-pass-filters">Band Pass
+Filters</a>
+<ul>
+<li><a href="#designing" id="toc-designing">Designing</a></li>
+<li><a href="#implementation-1"
+id="toc-implementation-1">Implementation</a></li>
+</ul></li>
+<li><a href="#envelope-detectors" id="toc-envelope-detectors">Envelope
+Detectors</a></li>
+<li><a href="#vocoder" id="toc-vocoder">Vocoder</a>
+<ul>
+<li><a href="#implementation-2"
+id="toc-implementation-2">Implementation</a></li>
+<li><a href="#testing-1" id="toc-testing-1">Testing</a></li>
+</ul></li>
+<li><a href="#putting-it-together" id="toc-putting-it-together">Putting
+It Together</a></li>
+<li><a href="#alternate-approach" id="toc-alternate-approach">Alternate
+Approach</a>
+<ul>
+<li><a href="#using-one-microcontroller"
+id="toc-using-one-microcontroller">Using one microcontroller</a></li>
+</ul></li>
+<li><a href="#analogue-signal-processing"
+id="toc-analogue-signal-processing">Analogue Signal Processing</a>
+<ul>
+<li><a href="#band-pass-filters-1" id="toc-band-pass-filters-1">Band
+Pass Filters</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<center>
+<video src="Demonstration.mp4" width="450" height="250" controls>
+</video>
+</center>
+<h2 id="description">Description</h2>
+<p>A Voice-encoder (Vocoder) is a signal processing device that can
+alter the sound of a human voice by making it sound robotic or
+harmonized. It performs this by taking a modulating signal (human voice)
+and modulating a carrier signal (a synthesiser).</p>
+<p>There are three main stages in a Vocoder:</p>
+<ol type="1">
+<li><p>Input Signal Conditioning:</p>
+<ul>
+<li>Suitably amplify and condition speech input signal</li>
+</ul></li>
+<li><p>Analysis (Modulation):</p>
+<ul>
+<li><p>The input speech is passed through a bank of band-pass filters,
+dividing it into multiple frequency bands.</p></li>
+<li><p>The amplitude envelope of each band is extracted (typically using
+rectification and low-pass filtering).</p></li>
+<li><p>This creates a set of control signals representing the dynamic
+spectral profile of the voice.</p></li>
+</ul></li>
+<li><p>Synthesis (Modulation of Carrier):</p>
+<ul>
+<li><p>A carrier signal (e.g. a sawtooth wave, white noise, or another
+voice) is passed through the same filter bank.</p></li>
+<li><p>The previously extracted envelopes modulate the amplitude of the
+carrier signal in each band.</p></li>
+<li><p>The outputs of all bands are summed, recreating speech-like audio
+with the timbre of the modulator but the dynamics of the original
+voice.</p></li>
+</ul></li>
+</ol>
+<h1 id="components">Components</h1>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 16%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr>
+<th>Component</th>
+<th>Quantity</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a
+href="https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf">ESP-WROOM-32</a>
+Microcontroller</td>
+<td>1</td>
+<td>Performs digital signal processing tasks such as envelope detection,
+FFT, and audio synthesis</td>
+</tr>
+<tr>
+<td><a
+href="https://ww1.microchip.com/downloads/en/devicedoc/22250a.pdf">MCP4922</a>
+12-bit DAC</td>
+<td>1</td>
+<td>Converts digitally processed audio/control signals back to analog
+for amplification</td>
+</tr>
+<tr>
+<td><a
+href="https://ww1.microchip.com/downloads/en/DeviceDoc/20001669e.pdf">MCP6043</a>
+Op-Amp</td>
+<td>1</td>
+<td>Preamplifies microphone before being sampled by ESP</td>
+</tr>
+<tr>
+<td><a href="https://www.ti.com/lit/ds/symlink/lm386.pdf">LM386</a>
+Audio Power Amp</td>
+<td>1</td>
+<td>Amplifies the modulated signal to speaker-driving levels</td>
+</tr>
+<tr>
+<td><a
+href="https://www.visaton.de/sites/default/files/dd_product/K%2050%20WP_2915-17_1.pdf">K
+50 WP 8Ω</a> Speaker</td>
+<td>1</td>
+<td>Required for audio output</td>
+</tr>
+<tr>
+<td>10Ω Resistor (5%)</td>
+<td>1</td>
+<td>Required for Audio Amp</td>
+</tr>
+<tr>
+<td>10kΩ Resistor (5%)</td>
+<td>2</td>
+<td>Required for Op-Amp feedback and Audio Amp input</td>
+</tr>
+<tr>
+<td>250μF Electrolytic Capacitor</td>
+<td>1</td>
+<td>AC-couples the amplified audio output to the speaker, blocking DC
+offset</td>
+</tr>
+<tr>
+<td>Toggle Switch</td>
+<td>4</td>
+<td>Required to control carrier signal shape</td>
+</tr>
+<tr>
+<td>10kΩ Linear Potentiometer</td>
+<td>5</td>
+<td>Required to set carrier signal frequency &amp; Audio Amp level</td>
+</tr>
+<tr>
+<td>Oscilloscope (Generic)</td>
+<td>1</td>
+<td>Used to visualize signal behavior at different stages (e.g., preamp
+output, DAC output, LM386 output)</td>
+</tr>
+<tr>
+<td><a
+href="https://wiki.dfrobot.com/Analog_Sound_Sensor_SKU__DFR0034">DFR0034
+Sound sensor</a></td>
+<td>1</td>
+<td>Used to extractive signal from speech</td>
+</tr>
+</tbody>
+</table>
+<h2 id="block-diagram">Block Diagram</h2>
+<p><img src="final_block_diagram.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+<h2 id="wiring-diagram">Wiring Diagram</h2>
+<p><img src="input_diagram.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+<br>
+<img src="output_diagram.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+<h1 id="build-and-test">Build and Test</h1>
+<h2 id="microphone-input">Microphone Input</h2>
+<p>Initially to verify the functionality of the microphone’s
+functionality, its output signal underwent the necessary conditioning
+(i.e., amplification via MCP6043) and was fed directly into an
+oscilloscope’s input, from this it was observed that the microphone
+adequately and promptly responded to changes at its input with all
+variations centred at a DC value of 0. As an extension, a monotone
+waveform (i.e., sine wave) was taken as input to the speaker and the
+resultant waveform appeared to match this. Therefore, verifying required
+functionality of the microphone’s input/output.</p>
+<h2 id="dac">DAC</h2>
+<p>The DAC is tested using a code that generates a digital sine wave.
+The SPI pins on the ESP32 are used due to their high speed. The code
+outputs a 16-bit integer; 4-bits to configure the DAC and a 12-bit
+integer value that will be converted from digital to analogue. The input
+pin of the DAC is connected to the ESP32. The DAC output is connected to
+an oscilloscope. The oscilloscope displays a sine wave if the DAC is
+operating correctly. The DAC and microphone are tested in conjunction.
+The microphone input is read by the ESP32. The analogue input is a value
+between 0 and 4096; this is because the ESP32 has a 12-bit ADC. The code
+divides the microphone input by 4095 (float) which converts the
+microphone input to a number between 0.0 and 1.0. The number is mapped
+onto a 12-bit integer value that is sent to the DAC. The oscilloscope is
+connected to the DAC output as before. It will show the sound waves that
+the microphone is picking up. The DAC and microphone functionality has
+now been verified, and both components are now ready to be incorporated
+into the final design.</p>
+<h2 id="speaker">Speaker</h2>
+<p>The speaker is wired directly to the oscilloscope. The oscilloscope
+functions as a wave generator to send a sine wave into the speaker.
+Ensure the frequency is within the audible range for humans (around 20
+Hz to 20 kHz). The sound emitted from the speaker clear and smooth, like
+a flute.</p>
+<h2 id="display">Display</h2>
+<p>The OLED display shows all the carrier waves; if they are on or off
+and their frequency. The display is wired to the Arduino Uno SPI pins.
+The four buttons which turn each wave on and off are wired to digital
+pins on the Arduino. The four potentiometers that control the frequency
+of each wave are wired to analogue pins. The output of the potentiometer
+is the nmapped onto a frequency.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> freq <span class="op">=</span> <span class="fl">200.0</span><span class="bu">f</span> <span class="op">+</span> <span class="fl">400.0</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span>analogRead<span class="op">(</span>FREQ<span class="op">)</span> <span class="op">/</span> <span class="fl">1023.0</span><span class="bu">f</span><span class="op">);</span></span></code></pre></div>
+<p>The value is divided by 1023 because the Arduino has a 10-bit ADC
+producing a number between 0.0 and 1.0. This number is multiplied by 400
+and added to 200. The frequency range is from 200Hz to 600Hz. The
+Arduino code for the display utilises the <a
+href="https://github.com/adafruit/Adafruit_SSD1306">Adafruit_SSD1306
+library</a>.
+<img src="screen_in_use.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+<h1 id="digital-signal-processing">Digital Signal Processing</h1>
+<h2 id="synthesiser">Synthesiser</h2>
+<h3 id="implementation">Implementation</h3>
+<p>The carrier wave in the Vocoder is generated by a simple synthesiser
+module on the microcontroller. This module is capable of generating
+sine, sawtooth, triangle, and square waves. These waves are summed
+together to create a more complex signal. The frequency of each of these
+component waves can be controlled independently by using four
+potentiometers, from 200 to 600 hz. Each component signal can also be
+enabled or disabled by using a switch.</p>
+<p>First, a struct to hold the synthesiser data is defined.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Synth <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    SynthType type<span class="op">;</span> <span class="co">// Types of waves to generate.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> f<span class="op">[</span><span class="dv">4</span><span class="op">];</span>     <span class="co">// Frequency of waves.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> t<span class="op">[</span><span class="dv">4</span><span class="op">];</span>     <span class="co">// Parameter of each wave.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Here, <code>SynthType</code> represents the types of waves to
+generate. This is implemented as an enum class.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> <span class="kw">class</span> SynthType <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Square   <span class="op">=</span> <span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Sawtooth <span class="op">=</span> <span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">1</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    Triangle <span class="op">=</span> <span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">2</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    Sine     <span class="op">=</span> <span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">3</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>We define each type as a power of 2 so that the wave type can be
+stored as a bitmask. This allows enabling the generation of multiple
+wave types at the same time. The <code>f</code> and <code>t</code>
+members of <code>Synth</code> are four component arrays to allow this as
+well.</p>
+<p>Instead of writing functions that repeat every <span
+class="math inline">\textrm{t}=\frac{1}{\textrm{f}}</span> seconds, we
+wrote functions that repeat every <span
+class="math inline">\textrm{t}=1</span>. This simplifies the code to
+generate the waves. In order to add frequency control, we don’t define
+<code>t</code> as <span
+class="math inline">\textrm{t}=\int_{0}^{\tau}d\tau=\tau</span>, where
+<span class="math inline">\tau</span> is the current time. We instead
+define the <code>t</code> parameter as <span
+class="math inline">\textrm{t}=\int_{0}^{\tau}\textrm{f}\,d\tau</span>.
+This also has two added benefits: - The waves remain continuous when
+<code>f</code> changes without having to calculate a phase offset to
+apply. - The wave functions will not depend on an expensive <span
+class="math inline">\frac{1}{\textrm{f}}</span> calculation.</p>
+<p>The function to generate the synthesised wave is defined as</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> synth_run<span class="op">(</span>Synth <span class="op">*</span>synth<span class="op">,</span> <span class="dt">float</span> dt<span class="op">)</span></span></code></pre></div>
+<p>The new <code>t</code> values for each wave is calculated with the
+following loop</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    synth<span class="op">-&gt;</span>t<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> fmodf<span class="op">(</span>synth<span class="op">-&gt;</span>t<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> dt <span class="op">*</span> synth<span class="op">-&gt;</span>f<span class="op">[</span>i<span class="op">],</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The <code>fmodf</code> function is used to keep the parameters
+between 0 and 1. The code used to generate the final wave from this is
+as follows:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">((</span><span class="dt">uint32_t</span><span class="op">)</span>synth<span class="op">-&gt;</span>type <span class="op">&amp;</span> <span class="op">(</span><span class="dt">uint32_t</span><span class="op">)</span>SynthType<span class="op">::</span>Square<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    out <span class="op">+=</span> <span class="op">(</span>synth<span class="op">-&gt;</span>t<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">&lt;</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2.0</span><span class="bu">f</span> <span class="op">-</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">++</span>scale<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">((</span><span class="dt">uint32_t</span><span class="op">)</span>synth<span class="op">-&gt;</span>type <span class="op">&amp;</span> <span class="op">(</span><span class="dt">uint32_t</span><span class="op">)</span>SynthType<span class="op">::</span>Sawtooth<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    out <span class="op">+=</span> synth<span class="op">-&gt;</span>t<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">*</span> <span class="fl">2.0</span><span class="bu">f</span> <span class="op">-</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">++</span>scale<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">((</span><span class="dt">uint32_t</span><span class="op">)</span>synth<span class="op">-&gt;</span>type <span class="op">&amp;</span> <span class="op">(</span><span class="dt">uint32_t</span><span class="op">)</span>SynthType<span class="op">::</span>Triangle<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    out <span class="op">+=</span> <span class="op">(</span>synth<span class="op">-&gt;</span>t<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">+</span> <span class="fl">2.0</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span><span class="fl">0.5</span><span class="bu">f</span> <span class="op">-</span> synth<span class="op">-&gt;</span>t<span class="op">[</span><span class="dv">2</span><span class="op">])</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>         <span class="op">*</span> <span class="op">(</span>synth<span class="op">-&gt;</span>t<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">))</span> <span class="op">*</span> <span class="fl">4.0</span><span class="bu">f</span> <span class="op">-</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">++</span>scale<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">((</span><span class="dt">uint32_t</span><span class="op">)</span>synth<span class="op">-&gt;</span>type <span class="op">&amp;</span> <span class="op">(</span><span class="dt">uint32_t</span><span class="op">)</span>SynthType<span class="op">::</span>Sine<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    out <span class="op">+=</span> sinf<span class="op">(</span>synth<span class="op">-&gt;</span>t<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> <span class="op">(</span><span class="dt">float</span><span class="op">)</span>M_PI<span class="op">);</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">++</span>scale<span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>To detect if a certain type of wave is enabled, the
+<code>&amp;</code> operator is used to extract the corresponding bit. If
+the result is non-zero, the wave type is enabled. The <code>scale</code>
+parameter is incremented for every wave added to the final signal. This
+is then used to scale the final wave to prevent it from exceeding a
+magnitude of 1 at any point.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>scale <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    out <span class="op">/=</span> scale<span class="op">;</span></span></code></pre></div>
+<p>Finally, the wave is returned from the function for use elsewhere in
+the program.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> out<span class="op">;</span></span></code></pre></div>
+<h3 id="testing">Testing</h3>
+<p>The synthesiser was tested by outputting the generated wave to an
+oscilloscope. With this, we could test that the synthesiser generated
+waves of the correct frequency and shape.</p>
+<h2 id="band-pass-filters">Band Pass Filters</h2>
+<h3 id="designing">Designing</h3>
+<p>In order to test our digital band pass filters, we first implemented
+it in python. This allowed us to test the frequency response and ensure
+it’s working correctly, as well as test different parameters easily. The
+filter design we implemented was a digital biquad filter. The code to
+implement this is as follows</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BiquadFilter:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, F_0, Q, gain, sample_rate):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.F_0 <span class="op">=</span> F_0</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Q <span class="op">=</span> Q</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gain <span class="op">=</span> gain</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sample_rate <span class="op">=</span> sample_rate</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x1 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y1 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._compute_coefficients()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _compute_coefficients(<span class="va">self</span>):</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> math.pi <span class="op">*</span> <span class="va">self</span>.F_0 <span class="op">/</span> <span class="va">self</span>.sample_rate</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        alpha <span class="op">=</span> math.sin(omega) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="va">self</span>.Q)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        a0 <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> alpha</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a1 <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> math.cos(omega)) <span class="op">/</span> a0</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a2 <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> alpha           ) <span class="op">/</span> a0</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b0 <span class="op">=</span> (alpha <span class="op">*</span> <span class="va">self</span>.gain   ) <span class="op">/</span> a0</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b2 <span class="op">=</span> (<span class="op">-</span>alpha <span class="op">*</span> <span class="va">self</span>.gain  ) <span class="op">/</span> a0</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> step(<span class="va">self</span>, x):</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.b0 <span class="op">*</span> x <span class="op">+</span> <span class="va">self</span>.b2 <span class="op">*</span> <span class="va">self</span>.x2 <span class="op">\</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>          <span class="op">-</span> <span class="va">self</span>.a1 <span class="op">*</span> <span class="va">self</span>.y1 <span class="op">-</span> <span class="va">self</span>.a2 <span class="op">*</span> <span class="va">self</span>.y2</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x2 <span class="op">=</span> <span class="va">self</span>.x1</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x1 <span class="op">=</span> x</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y2 <span class="op">=</span> <span class="va">self</span>.y1</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y1 <span class="op">=</span> y</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reset(<span class="va">self</span>):</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x1 <span class="op">=</span> <span class="va">self</span>.x2 <span class="op">=</span> <span class="va">self</span>.y1 <span class="op">=</span> <span class="va">self</span>.y2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_output(<span class="va">self</span>):</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.y1</span></code></pre></div>
+<p>We also tested cascading filters to improve results. This is the code
+we used to implement this.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HighOrderFilter:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="bu">filter</span>, order):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.filters <span class="op">=</span> [copy.deepcopy(<span class="bu">filter</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(order)]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> step(<span class="va">self</span>, x):</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.filters[<span class="dv">0</span>].step(x)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(<span class="va">self</span>.filters) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.filters[i <span class="op">+</span> <span class="dv">1</span>].step(<span class="va">self</span>.filters[i].get_output())</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reset(<span class="va">self</span>):</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="bu">filter</span> <span class="kw">in</span> <span class="va">self</span>.filters:</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            <span class="bu">filter</span>.reset()</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_output(<span class="va">self</span>):</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.filters[<span class="op">-</span><span class="dv">1</span>].get_output()</span></code></pre></div>
+<p>It just copies the filter <code>order</code> times and takes the
+input from one filter and passes it to the next filter. To test the
+frequency response of the filters, we wrote a class to generate a sine
+wave.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SineSignal:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, freq):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.freq <span class="op">=</span> freq</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, t):</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> math.sin(<span class="dv">2</span><span class="op">*</span>math.pi<span class="op">*</span><span class="va">self</span>.freq<span class="op">*</span>t)</span></code></pre></div>
+<p>To simulate the frequency response of a filter, we run the filter for
+4 periods of a sine wave. The gain of the filter for this frequency is
+calculated as the maximum output value. We repeat this for a range of
+frequencies and graph the result so that we can evaluate the
+effectiveness of the filter.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eval_signal(<span class="bu">filter</span>, signal, dt, step_count):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">filter</span>.reset()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    v_i <span class="op">=</span> [signal(dt<span class="op">*</span>i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(step_count)]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    v_o <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> step_count</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(step_count):</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        v_o[i] <span class="op">=</span> <span class="bu">filter</span>.get_output()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">filter</span>.step(v_i[i], dt)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (v_i, v_o)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eval_sine_period(<span class="bu">filter</span>, freq, periods, dt):</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> eval_signal(<span class="bu">filter</span>, SineSignal(freq), dt, <span class="bu">int</span>(periods<span class="op">/</span>dt<span class="op">/</span>freq))</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_freq_response(<span class="bu">filter</span>, freq_begin, freq_end, freq_step, dt):</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    step_count <span class="op">=</span> <span class="bu">int</span>((freq_end <span class="op">-</span> freq_begin) <span class="op">/</span> freq_step)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    freq <span class="op">=</span> [freq_begin <span class="op">+</span> i<span class="op">*</span>freq_step <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(step_count)]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> step_count</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(step_count):</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        out[i] <span class="op">=</span> <span class="bu">max</span>(eval_sine_period(<span class="bu">filter</span>, freq[i], <span class="dv">4</span>, dt)[<span class="dv">1</span>])</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    plt.plot(freq, out)</span></code></pre></div>
+<p>Finally, we test the frequency response of a biquad filter and
+several high order filters contructed from it. Here is an example of a
+test that we ran.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dt  <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="fl">8e3</span>) <span class="co"># 8 kHz sample rate.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f_l <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>f_u <span class="op">=</span> <span class="dv">1500</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>f_0 <span class="op">=</span> (f_l<span class="op">+</span>f_u)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#                       F_0,      Q       , gain, sample_rate</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>filter_1 <span class="op">=</span> BiquadFilter(f_0, f_0<span class="op">/</span>(f_u<span class="op">-</span>f_l),  <span class="dv">1</span>  ,   <span class="dv">1</span><span class="op">/</span>dt)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>filter_2 <span class="op">=</span> HighOrderFilter(filter_1, <span class="dv">2</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>filter_3 <span class="op">=</span> HighOrderFilter(filter_1, <span class="dv">3</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>filter_4 <span class="op">=</span> HighOrderFilter(filter_1, <span class="dv">4</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                   filter , freq_begin, freq_end, freq_step, dt</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plot_freq_response(filter_1,    <span class="dv">50</span>     ,   <span class="dv">5000</span>  ,    <span class="dv">10</span>    , dt)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plot_freq_response(filter_2,    <span class="dv">50</span>     ,   <span class="dv">5000</span>  ,    <span class="dv">10</span>    , dt)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plot_freq_response(filter_3,    <span class="dv">50</span>     ,   <span class="dv">5000</span>  ,    <span class="dv">10</span>    , dt)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plot_freq_response(filter_4,    <span class="dv">50</span>     ,   <span class="dv">5000</span>  ,    <span class="dv">10</span>    , dt)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">&quot;filter_1&quot;</span>, <span class="st">&quot;filter_2&quot;</span>, <span class="st">&quot;filter_3&quot;</span>, <span class="st">&quot;filter_4&quot;</span>])</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Frequency (Hz)&quot;</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Gain&quot;</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>This produces the following graph.</p>
+<p><img src="freq_response.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+<p>Due to the much better performance of the higher order filters, we
+decided to go with a cascaded filter design. Because we had the
+computational headroom with the esp32, we choose to have four cascaded
+filters to improve the quality further.</p>
+<p>Next, we tested the chosen filter design on signals composed of
+multiple frequency components. To visualise the result, we plot the
+transient response of the filter.</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_signal(<span class="bu">filter</span>, signal, dt, step_count):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> [i<span class="op">*</span>dt <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(step_count)]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    v_i, v_o <span class="op">=</span> eval_signal(<span class="bu">filter</span>, signal, dt, step_count)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    plt.plot(t, v_i)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    plt.plot(t, v_o)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    plt.legend([<span class="st">&quot;Input&quot;</span>, <span class="st">&quot;Output&quot;</span>])</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">&quot;time (s)&quot;</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">&quot;magnitude&quot;</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+<p>To allow creating signals with multiple components and generating
+noisy signals, we define the following to classes:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SumSignal:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, signals):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.signals <span class="op">=</span> signals</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, t):</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> signal <span class="kw">in</span> <span class="va">self</span>.signals:</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            out <span class="op">+=</span> signal(t)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NoiseSignal:</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, t):</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random() <span class="op">*</span> <span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span></code></pre></div>
+<p>For this test, we define a signal made up of a sum of sine signals
+and a noise signal. The band pass filter is configured to allow 500-1500
+Hz through, so the output should ideally be an 800 Hz sine wave.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dt  <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="fl">8e3</span>) <span class="co"># 8 kHz sample rate.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>duration <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>f_l <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>f_u <span class="op">=</span> <span class="dv">1500</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>f_0 <span class="op">=</span> (f_l<span class="op">+</span>f_u)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> HighOrderFilter(BiquadFilter(f_0, f_0<span class="op">/</span>(f_u<span class="op">-</span>f_l), <span class="dv">1</span>, <span class="dv">1</span><span class="op">/</span>dt), <span class="dv">4</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>signal <span class="op">=</span> SumSignal([</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    SineSignal(<span class="dv">800</span>), SineSignal(<span class="dv">2400</span>), SineSignal(<span class="dv">3800</span>),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    SineSignal( <span class="dv">50</span>), SineSignal(<span class="dv">1800</span>), SineSignal(<span class="dv">2100</span>),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    NoiseSignal()</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>plot_signal(<span class="bu">filter</span>, signal, dt, <span class="bu">int</span>(duration<span class="op">/</span>dt))</span></code></pre></div>
+<p>This outputs the following graph:</p>
+<p><img src="trans_response.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+<p>This filter produced the expected 800 Hz sine wave with only minimal
+distortion.</p>
+<h3 id="implementation-1">Implementation</h3>
+<p>Once the filter was designed, implementing it on the microcontroller
+was simple. First, we defined two structs to hold the filter
+configuration and the filter state.</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Filter <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> a1<span class="op">,</span> a2<span class="op">,</span> b0<span class="op">,</span> b2<span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> FilterState <span class="op">{</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> x1<span class="op">,</span> x2<span class="op">,</span> y1<span class="op">,</span> y2<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>We split the filter into two parts as several filters in the Vocoder
+will use the same configuration. This way, we don’t have to store
+multiple copies. The configuration and step functions are pretty much
+copied over from the python design.</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> configure_filter<span class="op">(</span>Filter <span class="op">*</span>filter<span class="op">,</span> <span class="dt">float</span> f_l<span class="op">,</span> <span class="dt">float</span> f_u<span class="op">,</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                      <span class="dt">float</span> gain<span class="op">,</span> <span class="dt">float</span> sample_rate</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> f_0 <span class="op">=</span> <span class="fl">0.5</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span>f_u <span class="op">+</span> f_l<span class="op">);</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> Q <span class="op">=</span> f_0 <span class="op">/</span> <span class="op">(</span>f_u <span class="op">-</span> f_l<span class="op">);</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> omega <span class="op">=</span> <span class="fl">2.0</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span><span class="dt">float</span><span class="op">)</span>M_PI <span class="op">*</span> f_0 <span class="op">/</span> sample_rate<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> alpha <span class="op">=</span> sinf<span class="op">(</span>omega<span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">2.0</span><span class="bu">f</span> <span class="op">*</span> Q<span class="op">);</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> a0 <span class="op">=</span> <span class="fl">1.0</span><span class="bu">f</span> <span class="op">+</span> alpha<span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    filter<span class="op">-&gt;</span>b0 <span class="op">=</span> <span class="op">(</span>alpha <span class="op">*</span> gain<span class="op">)</span> <span class="op">/</span> a0<span class="op">;</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    filter<span class="op">-&gt;</span>b2 <span class="op">=</span> <span class="op">(-</span>filter<span class="op">-&gt;</span>b0<span class="op">)</span> <span class="op">/</span> a0<span class="op">;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    filter<span class="op">-&gt;</span>a1 <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span><span class="bu">f</span> <span class="op">*</span> cosf<span class="op">(</span>omega<span class="op">)</span> <span class="op">/</span> a0<span class="op">;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    filter<span class="op">-&gt;</span>a2 <span class="op">=</span> <span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span> <span class="op">-</span> alpha<span class="op">)</span> <span class="op">/</span> a0<span class="op">;</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> filter_step<span class="op">(</span>Filter <span class="op">*</span>filter<span class="op">,</span> FilterState <span class="op">*</span>state<span class="op">,</span> <span class="dt">float</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> y <span class="op">=</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        filter<span class="op">-&gt;</span>b0 <span class="op">*</span>        x  <span class="op">+</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        filter<span class="op">-&gt;</span>b2 <span class="op">*</span> state<span class="op">-&gt;</span>x2 <span class="op">-</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        filter<span class="op">-&gt;</span>a1 <span class="op">*</span> state<span class="op">-&gt;</span>y1 <span class="op">-</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        filter<span class="op">-&gt;</span>a2 <span class="op">*</span> state<span class="op">-&gt;</span>y2<span class="op">;</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    state<span class="op">-&gt;</span>x2 <span class="op">=</span> state<span class="op">-&gt;</span>x1<span class="op">;</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    state<span class="op">-&gt;</span>x1 <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    state<span class="op">-&gt;</span>y2 <span class="op">=</span> state<span class="op">-&gt;</span>y1<span class="op">;</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    state<span class="op">-&gt;</span>y1 <span class="op">=</span> y<span class="op">;</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y<span class="op">;</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>To cascade the filters, we take in one filter configuration and an
+array of filter states. The output of one filter is then fed into the
+input of the next. The final filter’s output is then returned.</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> cascade_step<span class="op">(</span>Filter <span class="op">*</span>filter<span class="op">,</span> FilterState <span class="op">*</span>states<span class="op">,</span> <span class="dt">int</span> state_count<span class="op">,</span> <span class="dt">float</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> out <span class="op">=</span> filter_step<span class="op">(</span>filter<span class="op">,</span> states<span class="op">,</span> x<span class="op">);</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> state_count<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> filter_step<span class="op">(</span>filter<span class="op">,</span> states <span class="op">+</span> i<span class="op">,</span> out<span class="op">);</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="envelope-detectors">Envelope Detectors</h2>
+<p>We use a simple, first order low pass filter on a full wave rectified
+input to capture the envelope of the input signal.</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> envelope_step<span class="op">(</span><span class="dt">float</span> <span class="op">*</span>state<span class="op">,</span> <span class="dt">float</span> a<span class="op">,</span> <span class="dt">float</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>state <span class="op">=</span> <span class="op">(</span><span class="dv">1</span> <span class="op">-</span> a<span class="op">)</span> <span class="op">*</span> <span class="op">*</span>state <span class="op">+</span> a <span class="op">*</span> <span class="bu">std::</span>abs<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="vocoder">Vocoder</h2>
+<h3 id="implementation-2">Implementation</h3>
+<p>The Vocoder consists of 4 filters for the input signal and 4 filters
+for the carrier signal. Each filter is constructed as a cascade of four
+second order biquad filters. This gives a total of 4 different filter
+configurations and <span class="math inline">4\times8=32</span> filter
+states. It also requires four envelope detectors for each of the four
+filtered bands.</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Vocoder <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">int</span>   filter_count      <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">int</span>   cascade_count     <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">float</span> sample_rate       <span class="op">=</span> <span class="fl">8000.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">float</span> dt                <span class="op">=</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">/</span>sample_rate<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">float</span> f_l <span class="op">=</span> <span class="fl">500.0</span><span class="bu">f</span><span class="op">,</span> f_u <span class="op">=</span> <span class="fl">2000.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">float</span> env_a             <span class="op">=</span> <span class="fl">0.1</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    Filter filters<span class="op">[</span>filter_count<span class="op">];</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    FilterState input_state<span class="op">[</span>filter_count <span class="op">*</span> cascade_count<span class="op">];</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    FilterState carrier_state<span class="op">[</span>filter_count <span class="op">*</span> cascade_count<span class="op">];</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> envelope_state<span class="op">[</span>filter_count<span class="op">];</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>The filter bands are set up so that they evenly take up a portion of
+the specified frequency band (500 - 2000 Hz). The filter and envelope
+detector states are initialised to 0.</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> vocoder_init<span class="op">(</span>Vocoder <span class="op">*</span>Vocoder<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> step <span class="op">=</span> <span class="op">(</span>Vocoder<span class="op">-&gt;</span>f_u <span class="op">-</span> Vocoder<span class="op">-&gt;</span>f_l<span class="op">)</span> <span class="op">/</span> Vocoder<span class="op">-&gt;</span>filter_count<span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> Vocoder<span class="op">-&gt;</span>filter_count<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        configure_filter<span class="op">(</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>filters <span class="op">+</span> i<span class="op">,</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>f_l <span class="op">+</span> step <span class="op">*</span> i<span class="op">,</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>f_l <span class="op">+</span> step <span class="op">*</span> <span class="op">(</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">),</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> Vocoder<span class="op">-&gt;</span>sample_rate</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    memset<span class="op">(</span>Vocoder<span class="op">-&gt;</span>input_state   <span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>Vocoder<span class="op">-&gt;</span>   input_state<span class="op">));</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    memset<span class="op">(</span>Vocoder<span class="op">-&gt;</span>carrier_state <span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>Vocoder<span class="op">-&gt;</span> carrier_state<span class="op">));</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    memset<span class="op">(</span>Vocoder<span class="op">-&gt;</span>envelope_state<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>Vocoder<span class="op">-&gt;</span>envelope_state<span class="op">));</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The first thing that the Vocoder does each step is run the voice
+input and the synthesiser input through each of the filters.</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> vocoder_update<span class="op">(</span>Vocoder <span class="op">*</span>Vocoder<span class="op">,</span> <span class="dt">float</span> input<span class="op">,</span> <span class="dt">float</span> synth_input<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> out<span class="op">[</span>Vocoder<span class="op">-&gt;</span>filter_count<span class="op">];</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> synth_out<span class="op">[</span>Vocoder<span class="op">-&gt;</span>filter_count<span class="op">];</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> Vocoder<span class="op">-&gt;</span>filter_count<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        out<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> cascade_step<span class="op">(</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>filters <span class="op">+</span> i<span class="op">,</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>input_state <span class="op">+</span> i <span class="op">*</span> Vocoder<span class="op">-&gt;</span>cascade_count<span class="op">,</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>cascade_count<span class="op">,</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            input</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        synth_out<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> cascade_step<span class="op">(</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>filters <span class="op">+</span> i<span class="op">,</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>carrier_state <span class="op">+</span> i <span class="op">*</span> Vocoder<span class="op">-&gt;</span>cascade_count<span class="op">,</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>cascade_count<span class="op">,</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>            synth_input</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>Next, it runs the filtered voice input through the envelope detectors
+in order to extract the magnitude of each band.</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> Vocoder<span class="op">-&gt;</span>filter_count<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        envelope_step<span class="op">(</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>envelope_state <span class="op">+</span> i<span class="op">,</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>            Vocoder<span class="op">-&gt;</span>env_a<span class="op">,</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>            out<span class="op">[</span>i<span class="op">]</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>The final step is to multiply each band of the synthesised signal by
+the amplitude of the corresponding band of the voice signal. The bands
+are then summed together to form the final output signal.</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> signal <span class="op">=</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> Vocoder<span class="op">-&gt;</span>filter_count<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>        signal <span class="op">+=</span> synth_out<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> Vocoder<span class="op">-&gt;</span>envelope_state<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> signal<span class="op">;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="testing-1">Testing</h3>
+<p>The Vocoder was tested by running it on a computer, using an audio
+file as input and using the speakers as output. This way, the output of
+the Vocoder could be tested under ideal conditions. Here is an example
+run with a 400 Hz square wave tested with the google speech for the word
+“Vocoder”.</p>
+<audio controls src="Vocoder.mp3">
+</audio>
+<h2 id="putting-it-together">Putting It Together</h2>
+<p>The three main DSP components we built are: - Synthesiser - Band pass
+filters - Envelope detectors - Vocoder</p>
+<p>We have already shown how the band pass filters and envelope
+detectors are used to form the Vocoder. The only thing left is to
+incorporate the synthesiser and the Vocoder into the final program on
+the microcontroller. The setup method for the program initialises all of
+the input pins and initialises the states of the synthesiser and
+Vocoder.</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> Vocoder Vocoder<span class="op">;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> Synth synth<span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Initialise pins.</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    dac_init<span class="op">();</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    synth_init<span class="op">(&amp;</span>synth<span class="op">);</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    vocoder_init<span class="op">(&amp;</span>Vocoder<span class="op">);</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The loop method starts by reading in the use configuration from
+several pins.</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> start_time <span class="op">=</span> micros<span class="op">();</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> run_vocoder <span class="op">=</span> digitalRead<span class="op">(</span><span class="dv">19</span><span class="op">);</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    synth<span class="op">.</span>type <span class="op">=</span> <span class="op">(</span>SynthType<span class="op">)(</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>          <span class="op">(</span>digitalRead<span class="op">(</span><span class="dv">21</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span> <span class="op">(</span>digitalRead<span class="op">(</span> <span class="dv">3</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span> <span class="op">(</span>digitalRead<span class="op">(</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span> <span class="op">(</span>digitalRead<span class="op">(</span><span class="dv">22</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="dv">3</span><span class="op">)</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    synth<span class="op">.</span>f<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="fl">200.0</span><span class="bu">f</span> <span class="op">+</span> <span class="fl">400.0</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span>analogRead<span class="op">(</span><span class="dv">25</span><span class="op">)</span> <span class="op">/</span> <span class="fl">4095.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    synth<span class="op">.</span>f<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="fl">200.0</span><span class="bu">f</span> <span class="op">+</span> <span class="fl">400.0</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span>analogRead<span class="op">(</span><span class="dv">33</span><span class="op">)</span> <span class="op">/</span> <span class="fl">4095.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    synth<span class="op">.</span>f<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="fl">200.0</span><span class="bu">f</span> <span class="op">+</span> <span class="fl">400.0</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span>analogRead<span class="op">(</span><span class="dv">32</span><span class="op">)</span> <span class="op">/</span> <span class="fl">4095.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    synth<span class="op">.</span>f<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="fl">200.0</span><span class="bu">f</span> <span class="op">+</span> <span class="fl">400.0</span><span class="bu">f</span> <span class="op">*</span> <span class="op">(</span>analogRead<span class="op">(</span><span class="dv">35</span><span class="op">)</span> <span class="op">/</span> <span class="fl">4095.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>It then reads in the microphone input and runs the synthesiser with
+the read in options.</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> input <span class="op">=</span> analogRead<span class="op">(</span>mic_pin<span class="op">)</span> <span class="op">/</span> <span class="fl">4095.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> synth_input <span class="op">=</span> synth_run<span class="op">(&amp;</span>synth<span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">/</span><span class="fl">8000.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>If the Vocoder is enabled, it runs it and uses its output for the
+speaker. If the Vocoder is disabled, then it just passes the
+synthesiser’s output to the speaker.</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> output <span class="op">=</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>run_vocoder<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">static</span> <span class="kw">constexpr</span> <span class="dt">float</span> gain <span class="op">=</span> <span class="fl">100.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> vocoder_update<span class="op">(&amp;</span>Vocoder<span class="op">,</span> input<span class="op">,</span> synth_input<span class="op">)</span> <span class="op">*</span> gain<span class="op">;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> max<span class="op">(-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> min<span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> output<span class="op">));</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> synth_input<span class="op">;</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>We apply a gain to the output of the Vocoder to make it more audable
+and to use more bits of the DAC. The output value is then written to the
+DAC attached to the speaker.</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> <span class="op">(</span>output <span class="op">+</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    dac_write_float<span class="op">(</span>output<span class="op">);</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>We convert the output to a range of [0, 1] instead of [-1, 1], as the
+DAC can’t output negative values.</p>
+<p>The DSP system is designed to run at 8 kHz. To ensure that we don’t
+run faster than this, we limit the speed of the loop. To do this, we
+first measure how long the current loop iteration took. At the start of
+the loop function we record the current time.</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> start_time <span class="op">=</span> micros<span class="op">();</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>Then, at the end of the function, we test if it took more than 125
+microseconds. If it did, then we wait for the remainder of the 125
+microsecond target.</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> end_time <span class="op">=</span> start_time <span class="op">+</span> <span class="dt">int</span><span class="op">(</span><span class="dv">125</span><span class="op">);</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> time <span class="op">=</span> micros<span class="op">();</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>time <span class="op">&gt;</span> end_time<span class="op">)</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Running behind</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        delayMicroseconds<span class="op">(</span>end_time <span class="op">-</span> time<span class="op">);</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="alternate-approach">Alternate Approach</h2>
+<h3 id="using-one-microcontroller">Using one microcontroller</h3>
+<p>It is possible to create this Vocoder using only one microcontroller.
+The ESP32 should be used because it has a higher sampling rate compared
+to the Arduino Uno. As the ESP32 has two cores, the VSPI and HSPI SPI
+buses on the ESP32 can be used simultaneously; one can be used for the
+12-bit DAC and the other for the OLED display. One ESP32 core is used
+for the Vocoder. The second ESP32 core could be used to run the display
+code.</p>
+<h2 id="analogue-signal-processing">Analogue Signal Processing</h2>
+<p>For this project, we decided to go with digital signal processing. We
+did, however, test analogue signal processing as well. We found analogue
+signal processing to be less reliable and harder to tune. Although, a
+plausible extension to this Vocoder would be to utilise more analogue
+components in the filtering and modulation stages, to provide the
+potential to scale the Vocoder from 4 channels to 16 channels as the
+signal processing capability would no longer be limited by the clock
+speed of the ESP32. Detailed below are the simulation performed in order
+to verify a potential analogue design.</p>
+<h3 id="band-pass-filters-1">Band Pass Filters</h3>
+<p>The type of band pass filter we tested was a Bessel-Thompson
+filter.</p>
+<p><img src="filter.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+<h4 id="component-values">Component Values</h4>
+<p>Bessel-Thompson filters have five component values that we can
+choose. These values can be related with the following three equations:
+<span
+class="math display">f_0=\frac{1}{2\pi}\sqrt{\frac{R_1+R_2}{R_1R_2R_3C_1C_2}}</span>
+<span
+class="math display">Q=\frac{f_0}{f_u-f_l}=\sqrt{\frac{\left(R_1+R_2\right)R_3C_1C_2}{R_1R_2\left(C_1+C_2\right)^2}}</span>
+<span class="math display">\textrm{Gain}=\frac{2\pi f_0
+R_2R_3C_2}{\sqrt{\left(4\pi^2f_0^2R_1R_2R_3C_1C_2-R_1-R_2\right)^2+\left(2\pi
+f_0\left(C_1+C_2\right)R_1R_2\right)^2}}</span></p>
+<p>where <span class="math inline">f_0</span> is the centre frequency in
+the pass band, <span class="math inline">f_u</span> is the upper pass
+frequency, and <span class="math inline">f_l</span> is the lower pass
+frequency.</p>
+<p>The first two equations were provided in the notes for this course.
+The third equation is obtained by substituting <span
+class="math inline">f_0</span> into the filter’s frequency response.</p>
+<p>Since we have five variables and only three contraints, we just
+choose <span class="math inline">R_1=1,000\,\Omega</span> and <span
+class="math inline">R_2=10,000\,\Omega</span>. To solve for the other
+three component values, we used python and scipy to numerically solve
+the system of equations. First, we define the contraints.</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f0_constraint(r1, r2, r3, c1, c2):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f0<span class="op">-</span><span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>pi)<span class="op">*</span>sqrt(<span class="bu">abs</span>((r1<span class="op">+</span>r2)<span class="op">/</span>(r1<span class="op">*</span>r2<span class="op">*</span>r3<span class="op">*</span>c1<span class="op">*</span>c2)))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Q_constraint(r1, r2, r3, c1, c2):</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Q <span class="op">-</span> sqrt(<span class="bu">abs</span>((r1<span class="op">+</span>r2)<span class="op">*</span>r3<span class="op">*</span>c1<span class="op">*</span>c2<span class="op">/</span>(r1<span class="op">*</span>r2<span class="op">*</span>((c1<span class="op">+</span>c2)<span class="op">**</span><span class="dv">2</span>))))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gain_constraint(r1, r2, r3, c1, c2):</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span>f0</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gain <span class="op">-</span> c2<span class="op">*</span>r2<span class="op">*</span>r3<span class="op">*</span>w<span class="op">/</span>sqrt((c1<span class="op">*</span>c2<span class="op">*</span>r1<span class="op">*</span>r2<span class="op">*</span>r3<span class="op">*</span>w<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> r1 <span class="op">-</span> r2)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span>((c1<span class="op">+</span>c2)<span class="op">*</span>r1<span class="op">*</span>r2<span class="op">*</span>w)<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<p>Then, we define the values that we would like to use for the
+filter.</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>f_l <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>f_u <span class="op">=</span> <span class="dv">1500</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>(f_l<span class="op">+</span>f_u)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> f0 <span class="op">/</span> (f_u<span class="op">-</span>f_l)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>gain <span class="op">=</span> <span class="dv">1</span></span></code></pre></div>
+<p>Next, we use scipy’s <code>fsolve</code> function to numerically
+solve for the remaining component values.</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>          f0_constraint(r1, r2, x[<span class="dv">0</span>], x[<span class="dv">1</span>], x[<span class="dv">2</span>]),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>           Q_constraint(r1, r2, x[<span class="dv">0</span>], x[<span class="dv">1</span>], x[<span class="dv">2</span>]),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        gain_constraint(r1, r2, x[<span class="dv">0</span>], x[<span class="dv">1</span>], x[<span class="dv">2</span>])</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>roots <span class="op">=</span> fsolve(f, [<span class="fl">1e5</span>, <span class="fl">1e-7</span>, <span class="fl">1e-7</span>])</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the component values and the absolute errors.</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(roots)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(roots))</span></code></pre></div>
+<p>Running this program gives the values of <span
+class="math inline">R_3\approx10.1\,\textrm{k}\Omega</span>, <span
+class="math inline">C_1\approx160\,\textrm{nF}</span>, and <span
+class="math inline">C_2\approx16\,\textrm{nF}</span>. Using LTspice to
+analyse the frequency response gives the following graph.</p>
+<p><img src="an_freq_response.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+<p>This shows that our filter functions as expected.</p>
+<h4 id="building-the-filter">Building the filter</h4>
+<p>We built the filter using these component values and an <a
+href="https://ww1.microchip.com/downloads/en/DeviceDoc/20001669e.pdf">MCP6042</a>
+amplifier. We then used the oscilloscope to test its frequency reponse,
+but we were unable to get anything usable. For this reason, we moved to
+using digital signal processing.</p>
+<p>The Alternate Vocoder’s block diagram is displayed below. A possible
+component suggestion for said Vocoder would be a <a
+href="https://thatcorp.com/datashts/THAT_2181-Series_Datasheet.pdf">THAT2181</a>
+VCA for modulation.
+<img src="alternate_approach.png" style="display: block; margin-left: auto; margin-right: auto; width: 70%;"></p>
+</body>
+</html>

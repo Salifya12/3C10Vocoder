@@ -1,0 +1,1 @@
+pandoc report\report.md -o report\report.html --standalone --highlight-style=breezeDark --katex --css=report.css --toc --include-before-body=report\heading.html
